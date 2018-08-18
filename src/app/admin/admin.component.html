@@ -1,0 +1,66 @@
+<div class="limiter">
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a class="navbar-brand" href="#">Admin</a>
+      </div>
+      <ul class="nav navbar-nav">
+        <li class="active">
+          <a routerLink="admin">Admin</a>
+        </li>
+        <li>
+          <a routerLink="../about">About</a>
+        </li>
+        <li class="dropdown">
+          <a class="dropdown-toggle" data-toggle="dropdown" href="#">Page 1
+            <span class="caret"></span>
+          </a>
+          <ul class="dropdown-menu">
+            <li>
+              <!-- <a href="#">name: {{hero1.name | uppercase}}</a> -->
+            </li>
+            <li>
+              <!-- <a href="#">id: {{hero1.id}}</a> -->
+            </li>
+            <li>
+              <!-- <input [(ngModel)]="hero.name" /> -->
+            </li>
+          </ul>
+        </li>
+
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li>
+          <a routerLink="">
+            <span class="glyphicon glyphicon-user"></span> Logout</a>
+        </li>
+        <!-- <li><a routerLink=""><span class="glyphicon glyphicon-log-in"></span> Login</a></li> -->
+      </ul>
+    </div>
+    <ul class="heroes text-white">
+      <li *ngFor="let hero of heroes" (click)="onSelect(hero)" >
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+      </li>
+    </ul>
+  </nav>
+
+ <!-- <div class="container-login100" style="background-image: url('assets/images/bg-01.jpg');">
+
+    <h2>
+      admin works! 2way binding {{hero.name | uppercase}}
+    </h2>
+  </div> -->
+  <div *ngIf="hero">
+
+    <h2>{{name | uppercase}} Details</h2>
+    <div><span>id: </span>{{id}}</div>
+    <div>
+      <label>name:
+        <input [(ngModel)]="name" placeholder="name">
+      </label>
+    </div>
+  
+  </div>
+
+</div>
+<app-about [akhil]= "selectedHero"></app-about>

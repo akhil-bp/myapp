@@ -1,0 +1,7 @@
+.navbar{
+    margin-bottom: 0% !important;
+}
+.selected {
+    background-color: red !important;
+    color: white;
+  }
