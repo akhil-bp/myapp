@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder,Validators } from '../../../node_modules/@angular/forms';
 import { RegisterService } from '../register.service';
-import { Router,ActivatedRoute } from '@angular/router'
+import { Router,ActivatedRoute } from '@angular/router';
+
+import { Injectable } from '@angular/core';
 
 @Component({
   selector: 'app-login',
@@ -22,11 +24,18 @@ export class LoginComponent implements OnInit {
       'temail':['',Validators.required],
       'password':['',Validators.required]
     });
+    
     this.rut.queryParams.subscribe(
       params =>{
         this.value = params.value;
       }
     );
+  }
+  getToken() {
+    return localStorage.getItem("LoggedInUser")
+  }
+  isLoggednIn() {
+    return this.getToken() !== null;
   }
 
   ngOnInit() {

@@ -1,21 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, FormControl, Validators  } from '@angular/forms';
 import { RegisterService } from '../register.service';
-//include ReactiveFormsModule in app.module.ts.....form manipulation
-
 
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.component.html',
-  styleUrls: ['./register.component.css']
+  selector: 'app-edit',
+  templateUrl: './edit.component.html',
+  styleUrls: ['./edit.component.css']
 })
-export class RegisterComponent implements OnInit {
+export class EditComponent implements OnInit {
+  temp=['user','admin'];
+  temp1=['active','notactive']
   registerForm: FormGroup;
   submitted = false;
   //emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(private registerService: RegisterService, private formBuilder: FormBuilder) {    
     this.registerForm = this.formBuilder.group({
       'tname':['',Validators.required],
+      'trole':"",
+      'tstatus':"",
       'temail':['',[Validators.required]],//,Validators.pattern(this.emailPattern)
       'tpassword':['', [Validators.required, Validators.minLength(2)]],
       'tconfpassword':['', [Validators.required, Validators.minLength(2)]]  
@@ -49,8 +51,5 @@ export class RegisterComponent implements OnInit {
   
 
   }
-
-  
-  
 
 }

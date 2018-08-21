@@ -9,16 +9,22 @@ import { LoginComponent } from './login/login.component';
 import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
+import { AuthGuard } from './auth.guard';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NavbarComponent } from './navbar/navbar.component';
+import { UsertableComponent } from './usertable/usertable.component';
+import { EditComponent } from './edit/edit.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
   {path: '', component: LoginComponent  },
-  { path: 'home', component: HomeComponent},
-  { path: 'about', component: AboutComponent},
-  { path: 'admin', component: AdminComponent},
-  { path: 'register', component: RegisterComponent}
+  { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},
+  { path: 'about', component: AboutComponent,canActivate: [AuthGuard]},
+  { path: 'admin', component: AdminComponent,canActivate: [AuthGuard]},
+  { path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
+  { path: 'register', component: RegisterComponent},
+  { path: 'edit', component: EditComponent}
    
   ];
 
@@ -30,7 +36,10 @@ const routes: Routes = [
     LoginComponent,
     AboutComponent,
     AdminComponent,
-    RegisterComponent
+    RegisterComponent,
+    NavbarComponent,
+    UsertableComponent,
+    EditComponent
   ],
   imports: [
     BrowserModule,
@@ -39,7 +48,7 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes)
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

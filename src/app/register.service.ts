@@ -36,12 +36,15 @@ export class RegisterService {
   loginsubmit(loginform){
     // console.log(loginform.value,"login value in service")
     this.http.post('http://localhost:3000/login',loginform.value).subscribe((data: any ) => {
-    console.log(data.status);
+    console.log(data.Pic);
+    localStorage.setItem('imagelocal', data.Pic);
     console.log(data.token);
 
     if(data.status == 'successfully logged'){
-      this.router.navigate(['/home']);
+      this.router.navigate(['/home'],{queryParams: {value:data.Pic}});
+    
       console.log(data.token);
+      localStorage.setItem("tkn",data.token);
     }
     else if(data.status == 'error in password'){
       this.router.navigate(['/'],{queryParams: {value:"error in password"}});
@@ -53,13 +56,33 @@ export class RegisterService {
       this.router.navigate([''],{queryParams: {value:"error in  email or password"}});
     }
 
+
+
+
     // if(data1.status1){
     // this.router.navigate(['/home']);
     // }
     // else{
     //   this.router.navigate(['']);
     // }
-    })
+    });
+
+
   }
+
+
+
+  getToken() {
+    return localStorage.getItem("tkn")
+  }
+  isLoggednIn() {
+    return this.getToken() !== null;
+  }
+
+  deleteData(id){
+    this.http.post('http://localhost:3000/delete',{id:id}).subscribe((data: any ) => {
+  });
+  }
+  
   
 }
