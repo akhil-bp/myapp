@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 label{
     font-size: 15px !important;
 }
@@ -6,4 +7,14 @@ label{
 }
 .ss{
     color:#8665f0;
+=======
+label{
+    font-size: 15px !important;
+}
+.navbar{
+    margin-bottom: 0% !important;
+}
+.ss{
+    color:#8665f0;
+>>>>>>> 553c82f2fdde1bc824fa34dc417d2778b6fb2d10
 }

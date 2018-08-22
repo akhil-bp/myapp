@@ -37,7 +37,10 @@ export class RegisterService {
     // console.log(loginform.value,"login value in service")
     this.http.post('http://localhost:3000/login',loginform.value).subscribe((data: any ) => {
     console.log(data.Pic);
+<<<<<<< HEAD
     localStorage.setItem('imagelocal', data.Pic);
+=======
+>>>>>>> 553c82f2fdde1bc824fa34dc417d2778b6fb2d10
     console.log(data.token);
 
     if(data.status == 'successfully logged'){
@@ -78,11 +81,14 @@ export class RegisterService {
   isLoggednIn() {
     return this.getToken() !== null;
   }
+<<<<<<< HEAD
 
   deleteData(id){
     this.http.post('http://localhost:3000/delete',{id:id}).subscribe((data: any ) => {
   });
   }
   
+=======
+>>>>>>> 553c82f2fdde1bc824fa34dc417d2778b6fb2d10
   
 }

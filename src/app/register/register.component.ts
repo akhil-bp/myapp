@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder,FormGroup, FormControl, Validators  } from '@angular/forms';
 import { RegisterService } from '../register.service';
+<<<<<<< HEAD
 //include ReactiveFormsModule in app.module.ts.....form manipulation
+=======
+>>>>>>> 553c82f2fdde1bc824fa34dc417d2778b6fb2d10
 
 
 @Component({

@@ -1,7 +1,16 @@
+<<<<<<< HEAD
 .navbar{
     margin-bottom: 0% !important;
 }
 .selected {
     background-color: red !important;
     color: white;
+=======
+.navbar{
+    margin-bottom: 0% !important;
+}
+.selected {
+    background-color: red !important;
+    color: white;
+>>>>>>> 553c82f2fdde1bc824fa34dc417d2778b6fb2d10
   }
