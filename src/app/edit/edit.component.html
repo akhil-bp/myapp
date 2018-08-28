@@ -45,8 +45,16 @@
                 </div>
               </div>
               <div class="col-lg-6">
+                  <div class="panel panel-default">
+                      <div class="panel-heading">
+                        Update user profile image
+                      </div>
+                      <div class="panel-body">
+                  <img src="http://localhost:3000/uploads/{{img}}">
                   <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                   <button class="btn btn-success" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">upload</button>
+              </div>
+              </div>
               </div>
                 <!-- <div class="panel panel-default"> </div> -->
                 <!-- <div class="panel-heading"> -->

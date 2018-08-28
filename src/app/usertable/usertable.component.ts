@@ -9,6 +9,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./usertable.component.css']
 })
 export class UsertableComponent implements OnInit {
+  p: number = 1;
   users:any;
   id:any;
   name : String = "";
@@ -30,13 +31,14 @@ export class UsertableComponent implements OnInit {
 };
 
 delete(data){
-  if(data){
-    confirm("are you sure to delete this?");
+  if(confirm("are you sure to delete this?")){
+    
     window.location.reload(true);
+    this.id=data._id;
+    console.log(this.id);
+    this.registerService.deleteData(this.id);
   }
-  this.id=data._id;
-  console.log(this.id);
-  this.registerService.deleteData(this.id);
+  
 }
 
 edit(data){

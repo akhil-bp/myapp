@@ -51,8 +51,9 @@ export class EditComponent implements OnInit {
       console.log(response)//response is pure object formate
       alert('File uploaded successfully');
       let pic = JSON.parse(response);//response changes to json
-      //console.log(picname)
-      let imagedata = {id: this.id, picname: pic.picname} 
+      //console.log(picname);
+      let imagedata = {id: this.id, picname: pic.picname,oldimage:this.img };
+      console.log(imagedata)
       this.http.post('http://localhost:3000/picupload',imagedata)
       .subscribe((data: any) => {
       });

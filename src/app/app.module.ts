@@ -17,6 +17,8 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsertableComponent } from './usertable/usertable.component';
 import { EditComponent } from './edit/edit.component';
+import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -46,10 +48,12 @@ const routes: Routes = [
   ],
   imports: [
     BrowserModule,
+    NgxPaginationModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    Ng2SearchPipeModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

@@ -4,3 +4,9 @@
     height: 50px;
     border-radius: 50px;
 }
+.a{
+    margin-right:17px;
+}
+.a:hover{
+    color:white
+}
