@@ -15,116 +15,71 @@
                     Update user details
                   </div>
                   <div class="panel-body">
-                    <form [formGroup]="registerForm" (submit)="register()">
+                    <form #form="ngForm" (ngSubmit)="edit(form)">
                       <div class="form-group">
-                        <input class="form-control" placeholder="Name" formControlName="tname" type="text">
+                        <input class="form-control" [(ngModel)]="name" name="name" type="text" value={{name}}>
                       </div>
-                      <p class="text-danger" *ngIf="registerForm.controls.tname.errors?.required && registerForm.controls.tname.touched">Username
-                        is required</p>
+
                       <div class="form-group">
-                        <input class="form-control" placeholder="E-mail" formControlName="temail" type="email">
+                        <input class="form-control" placeholder="E-mail" [(ngModel)]="email" name="email" type="email" value={{email}}>
                       </div>
-                      <p class="text-danger" *ngIf="registerForm.controls.temail.errors?.required && registerForm.controls.temail.touched">Email
-                        is required</p>
-                        <div class="form-group">
-                      <label>Role</label> 
-                      <select class="form-control" formControlName = "trole">
-                          <option *ngFor="let c of temp" [ngValue]="c">{{ c }}</option>
-                      </select>
-                      <label>Status</label> 
-                      <select class="form-control" formControlName = "tstatus">
-                          <option *ngFor="let d of temp1" [ngValue]="d">{{ d }}</option>
-                      </select>
-                      </div>
+
                       <div class="form-group">
-                        <input class="form-control" placeholder="Password" formControlName="tpassword" type="password">
+                        <label>Role</label>
+                        <select class="form-control" [(ngModel)]="role" name="role">
+                          <option value="0" [selected]="role === 0">user</option>
+                          <option value="1" [selected]="role === 1">admin</option>
+                          <!-- <option *ngFor="let c of temp" [ngValue]="c">{{ c }}</option> -->
+                        </select>
+                        <label>Status</label>
+                        <select class="form-control" [(ngModel)]="status" name="status">
+                          <option value="0" [selected]="status === 0">not active</option>role
+                          <option value="1" [selected]="status === 1">active</option>
+                        </select>
                       </div>
-                      <p class="text-danger" *ngIf="registerForm.controls.tpassword.errors?.minlength">Password must be at
-                        least 2 characters long.</p>
-                      <p class="text-danger" *ngIf="registerForm.controls.tpassword.errors?.required && registerForm.controls.tpassword.touched">Password
-                        is required</p>
-                      <div class="form-group">
-                        <input class="form-control" placeholder="Confirm Password" formControlName="tconfpassword" type="password">
-                      </div>
-                      <p class="text-danger" *ngIf="registerForm.controls.tpassword.errors?.minlength">Password must be at
-                        least 2 characters long.</p>
-                      <p class="text-danger" *ngIf="registerForm.controls.tconfpassword.errors?.required && registerForm.controls.tconfpassword.touched">Password
-                        is required</p>
-                      <input class="btn btn-lg btn-block" [disabled]="!registerForm.valid" type="submit" value="register" />
+                    
+
+                      <input class="btn btn-lg btn-block" type="submit" value="edit" />
                     </form>
                   </div>
                 </div>
               </div>
               <div class="col-lg-6">
-                <div class="panel panel-default">
-                  <div class="panel-heading">
-                    Update user profile image
-                  </div>
-                  <div class="panel-body">
-
-                  </div>
-                </div>
+                  <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+                  <button class="btn btn-success" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">upload</button>
               </div>
+                <!-- <div class="panel panel-default"> </div> -->
+                <!-- <div class="panel-heading"> -->
+                  <!-- Update user profile image -->
+                <!-- </div> -->
+                <!-- <div class="panel-body"> -->
+                  <!-- <form> -->
+                    <!-- <img src="http://localhost:3000/uploads/{{img}}" alt="image" />
+                    <input type="file">
+                    <input class="btn btn-sucess" type="submit" value="submit"> -->
+                    <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+
+                    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                      Upload an Image
+                    </button>
+                  </form> -->
+                  <!-- <form> -->
+                    <!-- <img src="http://localhost:3000/uploads/{{img}}" alt="image" />
+                    <input type="file">
+                    <input class="btn btn-sucess" type="submit" value="submit"> -->
+                    <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
+
+                    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
+                      Upload an Image
+                    </button>
+                  </form> -->
+                <!-- </div> -->
+              <!-- </div> -->
             </div>
           </div>
         </div>
       </div>
     </div>
-    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.51/jquery.form.min.js"></script>
+  </div>
 
-    <!-- <script>  
-              var baseUrl = "<%= baseUrl %>";//add this within a <script>
-              //put all the jscript files in another file and give a link here.
-              $(document).ready(function () {
-                $("#datepicker").datepicker({
-                  changeMonth: true,
-                  changeYear: true,
-                  dateFormat: "yy-mm-dd"
-                });
-                $('#uploadForm').submit(function () {
-                  // $("#status").empty().text("File is uploading...");
-
-                  $(this).ajaxSubmit({
-                    beforeSend: function (jqXHR) {
-                      var currentFile = $("input[name=image]").get(0).files[0];
-                      console.log(currentFile);
-                      console.log(currentFile.name);
-
-                      var re = /(?:\.([^.]+))?$/;
-                      var ext = re.exec(currentFile.name)[1];
-                      console.log(currentFile.size);
-                      var sz = currentFile.size;
-                      var arr = ["png", "jpg", "jpeg", "gif"];
-                      if (arr.includes(ext) === false) {
-                        jqXHR.abort();
-                        $("#status1").text("please check your image extension");
-                      }
-                      else if (sz > 1e+6) {//https://www.google.co.in/search?q=1b+what+mb&rlz=1C1CHBF_enIN802IN802&oq=1b+what+mb&aqs=chrome..69i57j0.7701j0j4&sourceid=chrome&ie=UTF-8
-                        jqXHR.abort();
-                        $("#status2").text("please upload images lessthan 1mb");
-                      }
-                      // if(arr.includes(ext) === false && sz > 1e+6) {
-                      //     jqXHR.abort();
-                      // }
-                      // // jqXHR.abort();
-                      // $("#status").text("file uploaded successfully");
-                    },
-                    error: function (xhr) {
-                      status('Error: ' + xhr.status);
-                    },
-
-                    success: function (response) {
-                      var n = response.profilePicFile;
-                      console.log(n);
-                      $("#tempImage").attr("value", response.profilePicFile);
-                      $("#greatphoto").attr("src", baseUrl + "uploads/" + response.profilePicFile);
-                      $("#status").empty().text("file uploaded successfully");
-                    }
-                  });
-
-                  return false;
-                });
-              });  
-            </script> -->
+</div>

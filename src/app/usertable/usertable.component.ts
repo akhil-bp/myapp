@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RegisterService } from '../register.service';
-
+import { Router,ActivatedRoute } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 
 @Component({
@@ -13,7 +13,7 @@ export class UsertableComponent implements OnInit {
   id:any;
   name : String = "";
   constructor(private registerService: RegisterService,
-    public httpClient:HttpClient ) { }
+    public httpClient:HttpClient ,private myroute: Router) { }
 
   ngOnInit() {
     this.getdata();
@@ -37,6 +37,12 @@ delete(data){
   this.id=data._id;
   console.log(this.id);
   this.registerService.deleteData(this.id);
+}
+
+edit(data){
+  this.id=data._id;
+  // console.log(this.id,"kjkjik");
+  this.myroute.navigate(['edit'],{queryParams: {id:this.id}});
 }
 
 }
