@@ -44,7 +44,8 @@ delete(data){
 edit(data){
   this.id=data._id;
   // console.log(this.id,"kjkjik");
-  this.myroute.navigate(['edit'],{queryParams: {id:this.id}});
+  // this.myroute.navigate(['edit'],{queryParams: {id:this.id}});
+  this.myroute.navigate(['edit',this.id]);
 }
 
 }

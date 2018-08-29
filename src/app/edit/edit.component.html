@@ -50,39 +50,12 @@
                         Update user profile image
                       </div>
                       <div class="panel-body">
-                  <img src="http://localhost:3000/uploads/{{img}}">
+                  <img src="http://localhost:3000/uploads/{{pic}}">
                   <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
                   <button class="btn btn-success" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">upload</button>
               </div>
               </div>
               </div>
-                <!-- <div class="panel panel-default"> </div> -->
-                <!-- <div class="panel-heading"> -->
-                  <!-- Update user profile image -->
-                <!-- </div> -->
-                <!-- <div class="panel-body"> -->
-                  <!-- <form> -->
-                    <!-- <img src="http://localhost:3000/uploads/{{img}}" alt="image" />
-                    <input type="file">
-                    <input class="btn btn-sucess" type="submit" value="submit"> -->
-                    <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-
-                    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                      Upload an Image
-                    </button>
-                  </form> -->
-                  <!-- <form> -->
-                    <!-- <img src="http://localhost:3000/uploads/{{img}}" alt="image" />
-                    <input type="file">
-                    <input class="btn btn-sucess" type="submit" value="submit"> -->
-                    <!-- <input type="file" name="photo" ng2FileSelect [uploader]="uploader" />
-
-                    <button type="button" class="btn btn-success btn-s" (click)="uploader.uploadAll()" [disabled]="!uploader.getNotUploadedItems().length">
-                      Upload an Image
-                    </button>
-                  </form> -->
-                <!-- </div> -->
-              <!-- </div> -->
             </div>
           </div>
         </div>

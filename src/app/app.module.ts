@@ -12,13 +12,15 @@ import { AboutComponent } from './about/about.component';
 import { AdminComponent } from './admin/admin.component';
 import { RegisterComponent } from './register/register.component';
 import { AuthGuard } from './auth.guard';
+import { RoleGuardService } from './role-guard.service';
 
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsertableComponent } from './usertable/usertable.component';
 import { EditComponent } from './edit/edit.component';
-import {NgxPaginationModule} from 'ngx-pagination'; // <-- import the module
+import {NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
+import { NotfoundComponent } from './notfound/notfound.component';
 
 const routes: Routes = [
   //{ path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'admin', component: AdminComponent,canActivate: [AuthGuard]},
   { path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
   { path: 'register', component: RegisterComponent},
-  { path: 'edit', component: EditComponent,canActivate: [AuthGuard]},
+  { path: 'edit/:id', component: EditComponent,canActivate: [AuthGuard]},
+  { path: '**', component: NotfoundComponent  },
    
   ];
 
@@ -44,7 +47,8 @@ const routes: Routes = [
     NavbarComponent,
     UsertableComponent,
     EditComponent,
-    FileSelectDirective
+    FileSelectDirective,
+    NotfoundComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +57,8 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    Ng2SearchPipeModule
+    Ng2SearchPipeModule,
+    RoleGuardService
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]

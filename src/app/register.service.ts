@@ -57,8 +57,6 @@ export class RegisterService {
     }
 
 
-
-
     // if(data1.status1){
     // this.router.navigate(['/home']);
     // }
@@ -66,12 +64,7 @@ export class RegisterService {
     //   this.router.navigate(['']);
     // }
     });
-
-
   }
-
-
-
   getToken() {
     return localStorage.getItem("tkn")
   }

@@ -28,7 +28,7 @@ export class EditComponent implements OnInit {
   img: any;
   form: any;
   profilePicFile: any;
-
+  pic:any;
   //emailPattern = "^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$";
   constructor(private registerService: RegisterService,
     private formBuilder: FormBuilder,
@@ -56,11 +56,13 @@ export class EditComponent implements OnInit {
       console.log(imagedata)
       this.http.post('http://localhost:3000/picupload',imagedata)
       .subscribe((data: any) => {
+        this.pic=data.pic;
+        console.log(data.pic)
       });
 
     };
 
-    this.rut.queryParams.subscribe(
+    this.rut.params.subscribe(
       params => {
         this.id = params.id;
         // console.log(this.id)
@@ -72,10 +74,10 @@ export class EditComponent implements OnInit {
         this.email = data.user.email;
         this.role = data.user.role;
         this.status = data.user.status;
-        this.img = data.user.profilePicFile;
+        this.pic = data.user.profilePicFile;
         //console.log(this.s,"kjkjkjk");
 
-        //  submitted = false;
+        //  submitted = false;isLoggednIn
         //  submitted = false;gisterService.data);
       })
 
@@ -98,7 +100,6 @@ export class EditComponent implements OnInit {
     this.http.post('http://localhost:3000/edit', user)
       .subscribe((data: any) => {
         this.router.navigate(['/usertable']);
-        // console.log(data.fle);
 
 
 
