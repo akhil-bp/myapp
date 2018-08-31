@@ -48,16 +48,24 @@ export class EditComponent implements OnInit {
     this.uploader.onAfterAddingFile = (file) => { file.withCredentials = false; };
     this.uploader.onCompleteItem = (item: any, response: any, status: any, headers: any) => {
       // console.log('ImageUpload', item, status, response);
-      console.log(response)//response is pure object formate
-      alert('File uploaded successfully');
+      console.log(item.file.size)//response is pure object formate
+      
       let pic = JSON.parse(response);//response changes to json
       //console.log(picname);
-      let imagedata = {id: this.id, picname: pic.picname,oldimage:this.img };
+      let imagedata = {id: this.id, picname: pic.picname,oldimage:this.pic,size:item.file.size };
       console.log(imagedata)
       this.http.post('http://localhost:3000/picupload',imagedata)
       .subscribe((data: any) => {
         this.pic=data.pic;
         console.log(data.pic)
+        if(data.errextension == 'err'){
+          // this.router.navigate(['/usertable']);
+          // alert('File error');
+          alert('please select images lessthan 1mb and select image formate such as png/jpg/jpeg/gif');
+        }
+        else{
+          alert('File uploaded successfully');
+        }
       });
 
     };

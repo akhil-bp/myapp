@@ -18,7 +18,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NavbarComponent } from './navbar/navbar.component';
 import { UsertableComponent } from './usertable/usertable.component';
 import { EditComponent } from './edit/edit.component';
-import {NgxPaginationModule} from 'ngx-pagination';
+import { NgxPaginationModule} from 'ngx-pagination';
 import { Ng2SearchPipeModule } from 'ng2-search-filter';
 import { NotfoundComponent } from './notfound/notfound.component';
 
@@ -28,10 +28,12 @@ const routes: Routes = [
   { path: 'home', component: HomeComponent,canActivate: [AuthGuard]},
   { path: 'about', component: AboutComponent,canActivate: [AuthGuard]},
   { path: 'admin', component: AdminComponent,canActivate: [AuthGuard]},
-  { path: 'usertable', component: UsertableComponent,canActivate: [AuthGuard]},
+  { path: 'usertable', component: UsertableComponent,canActivate: [RoleGuardService]},
   { path: 'register', component: RegisterComponent},
   { path: 'edit/:id', component: EditComponent,canActivate: [AuthGuard]},
-  { path: '**', component: NotfoundComponent  },
+  { path: 'notfound', component: NotfoundComponent},
+  { path: '**', component: NotfoundComponent  }
+
    
   ];
 
@@ -57,8 +59,7 @@ const routes: Routes = [
     ReactiveFormsModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    Ng2SearchPipeModule,
-    RoleGuardService
+    Ng2SearchPipeModule
   ],
   providers: [AuthGuard],
   bootstrap: [AppComponent]
