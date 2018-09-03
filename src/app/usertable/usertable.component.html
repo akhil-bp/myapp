@@ -3,7 +3,8 @@
 <app-navbar></app-navbar>
 
 <table class="table">
-    <input class="b" type="text" [(ngModel)]="term" placeholder="search">
+    <input class="b" type="text" class="form-control" placeholder="DB Search..." (keyup)="msg2($event)">
+    <input class="b" type="text" [(ngModel)]="term" placeholder="Local search">
   <tr>
     <th>name</th>
     <th>email</th>

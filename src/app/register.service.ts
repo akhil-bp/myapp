@@ -8,6 +8,8 @@ import { Router } from '@angular/router'
 })
 export class RegisterService {
 
+  baseUrl = 'http://localhost:3000/';  
+
   constructor(
     private http: HttpClient,
     private router: Router
@@ -46,7 +48,7 @@ export class RegisterService {
       console.log(data.token);
       localStorage.setItem("tkn",data.token);
     }
-    else if(data.status == 'error in password'){
+    else if(data.status == 'error in passwor4200/usertabled'){
       this.router.navigate(['/'],{queryParams: {value:"error in password"}});
     }
     else if(data.status == 'invalid email address'){
@@ -77,5 +79,11 @@ export class RegisterService {
   });
   }
   
+  searchs(srch){
+    return this.http.get(this.baseUrl+'search/'+srch)
+  }
+  getusers(){
+   return this.http.get(this.baseUrl+'getusers')    
+  }
   
 }
